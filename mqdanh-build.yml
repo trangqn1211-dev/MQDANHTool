@@ -1,0 +1,144 @@
+name: Build MQDANH 2027 APK
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Tao project Android tu index.html va logo.png
+        run: |
+          set -e
+          A=app/src/main
+          mkdir -p $A/java/com/mqdanh/tet2027 $A/assets/www $A/res/values
+          IDX="index.html"; [ -f "$IDX" ] || IDX="$(ls index*.html | head -n1)"
+          LOGO="logo.png"; [ -f "$LOGO" ] || LOGO="$(ls logo*.png | head -n1)"
+          export LOGO
+          cp "$IDX" $A/assets/www/index.html
+          cat > settings.gradle <<'EOF'
+          pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories { google(); mavenCentral() }
+          }
+          rootProject.name = "MQDANH2027"
+          include ':app'
+          EOF
+          echo "plugins { id 'com.android.application' version '8.5.2' apply false }" > build.gradle
+          printf 'org.gradle.jvmargs=-Xmx2g\nandroid.useAndroidX=false\n' > gradle.properties
+          cat > app/build.gradle <<'EOF'
+          plugins { id 'com.android.application' }
+          android {
+              namespace 'com.mqdanh.tet2027'
+              compileSdk 34
+              defaultConfig {
+                  applicationId "com.mqdanh.tet2027"
+                  minSdk 24
+                  targetSdk 34
+                  versionCode 1
+                  versionName "1.0"
+              }
+              compileOptions {
+                  sourceCompatibility JavaVersion.VERSION_17
+                  targetCompatibility JavaVersion.VERSION_17
+              }
+          }
+          EOF
+          cat > $A/AndroidManifest.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <application
+                  android:label="@string/app_name"
+                  android:icon="@mipmap/ic_launcher"
+                  android:theme="@style/AppTheme"
+                  android:allowBackup="true">
+                  <activity
+                      android:name=".MainActivity"
+                      android:exported="true"
+                      android:configChanges="orientation|screenSize|keyboardHidden">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN"/>
+                          <category android:name="android.intent.category.LAUNCHER"/>
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+          echo '<resources><string name="app_name">MQDANH 2027</string></resources>' > $A/res/values/strings.xml
+          cat > $A/res/values/themes.xml <<'EOF'
+          <resources>
+              <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
+                  <item name="android:statusBarColor">#7A0010</item>
+                  <item name="android:navigationBarColor">#3D0008</item>
+                  <item name="android:windowBackground">#7A0010</item>
+              </style>
+          </resources>
+          EOF
+          cat > $A/java/com/mqdanh/tet2027/MainActivity.java <<'EOF'
+          package com.mqdanh.tet2027;
+
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+
+          public class MainActivity extends Activity {
+              private WebView web;
+
+              @Override
+              protected void onCreate(Bundle b) {
+                  super.onCreate(b);
+                  web = new WebView(this);
+                  web.setBackgroundColor(0xFF7A0010);
+                  setContentView(web);
+                  WebSettings s = web.getSettings();
+                  s.setJavaScriptEnabled(true);
+                  s.setDomStorageEnabled(true);
+                  web.setWebViewClient(new WebViewClient());
+                  web.loadUrl("file:///android_asset/www/index.html");
+              }
+
+              @Override
+              protected void onDestroy() {
+                  if (web != null) web.destroy();
+                  super.onDestroy();
+              }
+          }
+          EOF
+          pip install pillow
+          python3 - <<'EOF'
+          from PIL import Image, ImageDraw
+          import os
+          im = Image.open(os.environ['LOGO']).convert('RGBA')
+          for d, sz in {'mdpi':48,'hdpi':72,'xhdpi':96,'xxhdpi':144,'xxxhdpi':192}.items():
+              p = 'app/src/main/res/mipmap-' + d
+              os.makedirs(p, exist_ok=True)
+              i = im.resize((sz, sz), Image.LANCZOS)
+              m = Image.new('L', (sz, sz), 0)
+              ImageDraw.Draw(m).rounded_rectangle((0, 0, sz-1, sz-1), radius=int(sz*.2), fill=255)
+              i.putalpha(m)
+              i.save(p + '/ic_launcher.png')
+          EOF
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - run: gradle assembleDebug --no-daemon
+      - run: cp app/build/outputs/apk/debug/app-debug.apk MQDANH-2027.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MQDANH-2027-apk
+          path: MQDANH-2027.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: MQDANH 2027 (ban ${{ github.run_number }})
+          files: MQDANH-2027.apk
