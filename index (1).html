@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đếm ngược Tết Đinh Mùi 2027</title>
+<style>
+:root{--red:#8b0000;--red2:#c1121f;--gold:#ffd166;--gold2:#f4a300;--cream:#fff3d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font-family:Georgia,"Times New Roman",serif;color:var(--cream);background:radial-gradient(ellipse at top,#c1121f 0%,#7a0010 55%,#3d0008 100%) fixed;overflow-x:hidden;text-align:center}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.petals span{position:absolute;top:-40px;animation:fall linear infinite;opacity:.85}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.lantern{position:absolute;top:0;font-size:56px;transform-origin:top center;animation:sway 3s ease-in-out infinite;z-index:2}
+.lantern.l{left:4%}.lantern.r{right:4%;animation-delay:1.2s}
+@keyframes sway{50%{transform:rotate(8deg)}0%,100%{transform:rotate(-8deg)}}
+main{position:relative;z-index:3;max-width:860px;margin:0 auto;padding:56px 16px 40px}
+.ti{width:.9em;height:.9em;vertical-align:-.08em}
+.credit{position:fixed;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:7;color:var(--gold);font-size:14px;font-weight:bold;letter-spacing:.05em;text-shadow:0 1px 3px rgba(0,0,0,.6);pointer-events:none}
+.sub{letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-size:13px}
+h1{margin:8px 0 4px;font-size:clamp(30px,7vw,56px);color:var(--gold);text-shadow:0 3px 0 #7a0010,0 0 24px rgba(255,209,102,.5)}
+.date{opacity:.9;margin-bottom:22px}
+.big{display:inline-block;padding:14px 26px;border:2px solid var(--gold);border-radius:18px;background:rgba(0,0,0,.2);margin-bottom:22px}
+.big b{font-size:clamp(34px,9vw,60px);color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.box{background:linear-gradient(160deg,#ffe29a,#f4a300);color:#7a0010;border-radius:16px;padding:14px 4px;box-shadow:0 6px 0 #a86a00,0 10px 24px rgba(0,0,0,.35)}
+.box b{display:block;font-size:clamp(24px,7vw,50px);line-height:1;font-variant-numeric:tabular-nums}
+.box i{font-style:normal;font-size:clamp(10px,2.6vw,14px);text-transform:uppercase;letter-spacing:.08em}
+.tl{margin:34px 4px 8px;text-align:left}
+.bar{position:relative;height:14px;background:rgba(0,0,0,.35);border-radius:99px;border:1px solid var(--gold)}
+.fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold2),var(--gold));transition:width 1s}
+.dot{position:absolute;top:-6px;left:0;width:26px;height:26px;border-radius:50%;background:var(--gold);border:3px solid #7a0010;box-shadow:0 0 12px var(--gold);transform:translateX(-50%);transition:left 1s}
+.tlab{display:flex;justify-content:space-between;font-size:12px;opacity:.85;margin-top:8px;gap:8px}
+.pct{margin-top:10px;text-align:center;font-size:14px;color:var(--gold)}
+.wish{margin-top:30px;font-style:italic;opacity:.9}
+button{margin-top:18px;background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:99px;padding:8px 18px;font:inherit;cursor:pointer}
+#end{position:fixed;inset:0;z-index:6;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(60,0,8,.55);padding:16px}
+#end.on{display:flex}
+.goat{width:min(78vw,400px);height:auto;animation:run 1.4s ease-out both,bob 1s ease-in-out 1.4s infinite;filter:drop-shadow(0 8px 16px rgba(0,0,0,.5))}
+@keyframes run{from{transform:translateX(-120vw)}to{transform:translateX(0)}}
+@keyframes bob{50%{transform:translateY(-16px) rotate(-4deg)}}
+.hny{font-size:clamp(30px,8.5vw,72px);font-weight:bold;color:var(--gold);text-shadow:0 3px 0 #7a0010,0 0 30px rgba(255,209,102,.8);animation:pop 1s 1.2s both}
+.hny small{display:block;font-size:.5em;color:var(--cream);letter-spacing:.15em}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+#close{display:none}
+#end.test #close{display:inline-block}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="fl"><g fill="#ff8fb1" stroke="#e0527e" stroke-width="1"><ellipse cy="-10" rx="7" ry="10" transform="rotate(0)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(72)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(144)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(216)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(288)"/></g><circle r="4" fill="#ffd166"/></g>
+<g id="fm"><g fill="#ffd23f" stroke="#e09f00" stroke-width="1"><ellipse cy="-10" rx="7" ry="10" transform="rotate(0)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(72)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(144)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(216)"/><ellipse cy="-10" rx="7" ry="10" transform="rotate(288)"/></g><circle r="4" fill="#f4a300"/></g>
+<g id="fc"><circle r="12" fill="#ffd166" stroke="#a86a00" stroke-width="2"/><rect x="-4" y="-4" width="8" height="8" fill="#c1121f"/></g>
+<g id="ln"><path d="M30 0V14" stroke="#ffd166" stroke-width="2"/><rect x="19" y="12" width="22" height="7" rx="2" fill="#ffd166"/><ellipse cx="30" cy="42" rx="25" ry="26" fill="#d90429" stroke="#ffd166" stroke-width="2"/><path d="M30 16Q14 42 30 68M30 16Q46 42 30 68" stroke="#ffd166" fill="none"/><rect x="19" y="65" width="22" height="7" rx="2" fill="#ffd166"/><path d="M30 72V94M24 72L22 90M36 72L38 90" stroke="#ffd166" stroke-width="2"/></g>
+</defs></svg>
+<canvas id="fx"></canvas>
+<div class="credit">Mai Quang Danh</div>
+<div class="petals" id="petals"></div>
+<svg class="lantern l" viewBox="0 0 60 100" width="56" height="94"><use href="#ln"/></svg><svg class="lantern r" viewBox="0 0 60 100" width="56" height="94"><use href="#ln"/></svg>
+<main>
+  <div class="sub">Xuân Đinh Mùi · Năm con Dê</div>
+  <h1><svg class="ti" viewBox="-20 -20 40 40"><use href="#fl"/></svg> Tết 2027 <svg class="ti" viewBox="-20 -20 40 40"><use href="#fm"/></svg></h1>
+  <div class="date">Mùng 1 Tết · Thứ Bảy, 06/02/2027</div>
+  <div class="big">Còn <b id="td">0</b> ngày nữa là đến Tết</div>
+  <div class="grid">
+    <div class="box"><b id="mo">0</b><i>Tháng</i></div>
+    <div class="box"><b id="d">0</b><i>Ngày</i></div>
+    <div class="box"><b id="h">00</b><i>Giờ</i></div>
+    <div class="box"><b id="m">00</b><i>Phút</i></div>
+    <div class="box"><b id="s">00</b><i>Giây</i></div>
+  </div>
+  <div class="tl">
+    <div class="bar"><div class="fill" id="fill"></div><div class="dot" id="dot"></div></div>
+    <div class="tlab"><span>Tết 2026<br>17/02/2026</span><span style="text-align:right">Tết 2027<br>06/02/2027</span></div>
+    <div class="pct" id="pct"></div>
+  </div>
+  <div class="wish">Vạn sự như ý · An khang thịnh vượng · Phát tài phát lộc</div>
+  <button id="test">Xem thử pháo hoa</button>
+</main>
+<div id="end">
+  <svg class="goat" viewBox="0 0 260 220" aria-label="Con dê">
+<ellipse cx="125" cy="208" rx="95" ry="8" fill="rgba(0,0,0,.3)"/>
+<g stroke="#c9a86a" stroke-width="2" stroke-linejoin="round">
+<path d="M56 122Q36 110 42 94Q60 100 66 124Z" fill="#fff3d6"/>
+<rect x="68" y="150" width="14" height="48" rx="6" fill="#fff3d6"/><rect x="92" y="152" width="14" height="46" rx="6" fill="#efdcae"/>
+<rect x="136" y="152" width="14" height="46" rx="6" fill="#efdcae"/><rect x="160" y="150" width="14" height="48" rx="6" fill="#fff3d6"/>
+<ellipse cx="118" cy="132" rx="64" ry="40" fill="#fff3d6"/>
+<path d="M150 112Q160 78 176 70L206 104Q180 128 152 150Z" fill="#fff3d6"/>
+<path d="M176 66Q164 30 138 26Q154 40 160 70Z" fill="#f4a300" stroke="#a86a00"/>
+<path d="M190 64Q196 28 168 16Q180 36 180 66Z" fill="#f4a300" stroke="#a86a00"/>
+<ellipse cx="188" cy="84" rx="27" ry="22" fill="#fff3d6"/><ellipse cx="212" cy="98" rx="17" ry="13" fill="#fff3d6"/>
+<ellipse cx="166" cy="86" rx="16" ry="7" transform="rotate(25 166 86)" fill="#ffc9a8"/>
+<path d="M206 110Q210 134 200 142Q196 126 198 110Z" fill="#fff3d6"/>
+</g>
+<g fill="#f4a300" stroke="#a86a00" stroke-width="1.5"><rect x="68" y="190" width="14" height="9" rx="3"/><rect x="92" y="190" width="14" height="9" rx="3"/><rect x="136" y="190" width="14" height="9" rx="3"/><rect x="160" y="190" width="14" height="9" rx="3"/></g>
+<circle cx="194" cy="80" r="4.5" fill="#3a0008"/><circle cx="195.5" cy="78.5" r="1.4" fill="#fff"/>
+<circle cx="219" cy="95" r="2.6" fill="#3a0008"/><path d="M206 106Q214 110 221 104" stroke="#3a0008" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M152 114Q174 136 202 114" fill="none" stroke="#c1121f" stroke-width="9" stroke-linecap="round"/>
+<circle cx="177" cy="128" r="8" fill="#ffd166" stroke="#a86a00" stroke-width="1.5"/><rect x="174" y="125" width="6" height="6" fill="#c1121f"/>
+<svg x="148" y="62" width="28" height="28" viewBox="-20 -20 40 40"><use href="#fl"/></svg>
+</svg>
+  <div class="hny"><small>ĐINH MÙI</small>Chúc Mừng Năm Mới 2027</div>
+  <button id="close">Đóng</button>
+</div>
+<script>
+(function(){
+  var OFF=7*3600000;                       // giờ Việt Nam (UTC+7)
+  var TARGET=Date.UTC(2027,1,6,0,0,0);     // 00:00 06/02/2027 theo giờ VN
+  var START=Date.UTC(2026,1,17,0,0,0);     // Tết 2026
+  var $=function(i){return document.getElementById(i)};
+  var pad=function(n){return n<10?'0'+n:''+n};
+  var finished=false,testing=false;
+
+  function addMonths(t,n){
+    var d=new Date(t),day=d.getUTCDate();
+    d.setUTCDate(1);d.setUTCMonth(d.getUTCMonth()+n);
+    var last=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth()+1,0)).getUTCDate();
+    d.setUTCDate(Math.min(day,last));
+    return d.getTime();
+  }
+  function tick(){
+    var now=Date.now()+OFF,diff=TARGET-now;
+    if(diff<=0){
+      ['mo','d'].forEach(function(i){$(i).textContent='0'});
+      ['h','m','s'].forEach(function(i){$(i).textContent='00'});
+      $('td').textContent='0';$('fill').style.width='100%';$('dot').style.left='100%';$('pct').textContent='Tết đã đến rồi!';
+      if(!finished){finished=true;celebrate(false)}
+      return;
+    }
+    var nd=new Date(now),td=new Date(TARGET);
+    var mo=(td.getUTCFullYear()-nd.getUTCFullYear())*12+td.getUTCMonth()-nd.getUTCMonth();
+    while(mo>0&&addMonths(now,mo)>TARGET)mo--;
+    if(mo<0)mo=0;
+    var rem=TARGET-addMonths(now,mo);
+    var d=Math.floor(rem/864e5);rem-=d*864e5;
+    var h=Math.floor(rem/36e5);rem-=h*36e5;
+    var m=Math.floor(rem/6e4);rem-=m*6e4;
+    var s=Math.floor(rem/1000);
+    $('mo').textContent=mo;$('d').textContent=d;
+    $('h').textContent=pad(h);$('m').textContent=pad(m);$('s').textContent=pad(s);
+    $('td').textContent=Math.ceil(diff/864e5);
+    var p=Math.max(0,Math.min(100,(now-START)/(TARGET-START)*100));
+    $('fill').style.width=p+'%';$('dot').style.left=p+'%';
+    $('pct').textContent='Đã đi qua '+p.toFixed(1)+'% chặng đường đến Tết';
+  }
+  setInterval(tick,1000);tick();
+
+  // Cánh hoa rơi
+  var pe=$('petals'),ids=['fl','fm','fl','fc'];
+  for(var i=0;i<20;i++){
+    var sp=document.createElement('span'),z=16+Math.random()*18|0;
+    sp.innerHTML='<svg width="'+z+'" height="'+z+'" viewBox="-20 -20 40 40"><use href="#'+ids[i%4]+'"/></svg>';
+    sp.style.left=Math.random()*100+'%';
+    sp.style.animationDuration=(7+Math.random()*8)+'s';
+    sp.style.animationDelay=(-Math.random()*12)+'s';
+    pe.appendChild(sp);
+  }
+
+  // Pháo hoa
+  var cv=$('fx'),cx=cv.getContext('2d'),W,H,parts=[],rockets=[],run=false,timer=0;
+  function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  size();addEventListener('resize',size);
+  var cols=['#ffd166','#ff4d4d','#ffffff','#ff9f1c','#ff6bd6','#7df9ff'];
+  function launch(){
+    rockets.push({x:W*(.15+Math.random()*.7),y:H,ty:H*(.15+Math.random()*.35),c:cols[Math.random()*cols.length|0]});
+  }
+  function burst(x,y,c){
+    var n=70+Math.random()*40|0;
+    for(var i=0;i<n;i++){
+      var a=Math.random()*Math.PI*2,v=1+Math.random()*5;
+      parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:Math.random()<.7?c:cols[Math.random()*cols.length|0]});
+    }
+  }
+  function loop(){
+    if(!run)return;
+    cx.globalCompositeOperation='destination-out';cx.fillStyle='rgba(0,0,0,.22)';cx.fillRect(0,0,W,H);
+    cx.globalCompositeOperation='lighter';
+    rockets=rockets.filter(function(r){
+      r.y-=9;cx.fillStyle=r.c;cx.fillRect(r.x,r.y,3,10);
+      if(r.y<=r.ty){burst(r.x,r.y,r.c);return false}
+      return true;
+    });
+    parts=parts.filter(function(p){
+      p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.vx*=.985;p.l-=.011;
+      if(p.l<=0)return false;
+      cx.globalAlpha=p.l;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,2.2,0,6.283);cx.fill();
+      return true;
+    });
+    cx.globalAlpha=1;
+    requestAnimationFrame(loop);
+  }
+  function startFx(){
+    if(run)return;run=true;loop();
+    for(var i=0;i<4;i++)setTimeout(launch,i*250);
+    timer=setInterval(function(){launch();if(Math.random()<.5)launch()},550);
+  }
+  function stopFx(){run=false;clearInterval(timer);rockets=[];parts=[];cx.clearRect(0,0,W,H)}
+
+  function celebrate(isTest){
+    var e=$('end');
+    e.classList.remove('on');void e.offsetWidth;
+    e.classList.toggle('test',isTest);e.classList.add('on');
+    startFx();
+  }
+  $('test').onclick=function(){testing=true;celebrate(true)};
+  $('close').onclick=function(){$('end').classList.remove('on','test');stopFx();testing=false};
+})();
+</script>
+</body>
+</html>
